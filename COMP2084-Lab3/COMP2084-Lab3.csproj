@@ -183,6 +183,7 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="js\confirm.js" />
     <Content Include="Site.Master" />
     <Content Include="student-details.aspx" />
     <Content Include="StudentModel.Context.tt">

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using System.Web.ModelBinding;
+
 namespace COMP2084_Lab2
 {
     public partial class students : System.Web.UI.Page
@@ -24,7 +26,19 @@ namespace COMP2084_Lab2
             gridStudents.DataBind();
         }
 
+        protected void gridStudents_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            Int32 gridIndex = e.RowIndex;
+            Int32 StudentID = Convert.ToInt32(gridStudents.DataKeys[gridIndex].Value);
+            var conn = new StudentEntities();
 
+            Student s = new Student();
+            s.StudentID = StudentID;
+            conn.Students.Attach(s);
+            conn.Students.Remove(s);
+            conn.SaveChanges();
 
+            getStudents();
+        }
     }
 }
